@@ -13,7 +13,9 @@ Tinytest.add("auth-middleware - loginToken - from params", function (test) {
     // TEST
     var context = {
         params: {
-            loginToken: "loginTokenFromParams"
+            query: {
+                loginToken: "loginTokenFromParams"
+            }
         },
         next: sinon.spy()
     };
@@ -36,7 +38,6 @@ Tinytest.add("auth-middleware - loginToken - from cookies", function (test) {
     };
     // TEST
     var context = {
-        params: {},
         request: {
             cookies: {
                 loginToken: "loginTokenFromCookies"
@@ -46,31 +47,6 @@ Tinytest.add("auth-middleware - loginToken - from cookies", function (test) {
     };
     authMiddleware.call(context);
     test.isTrue(Accounts._hashLoginToken.calledWith("loginTokenFromCookies"));
-    // AFTER
-    Accounts._hashLoginToken = null;
-    Meteor.users = null;
-});
-
-Tinytest.add("auth-middleware - loginToken - defaults to empty string", function (test) {
-    // BEFORE
-    Accounts = {
-        _hashLoginToken: sinon.spy()
-    };
-    Meteor.users = {
-        findOne: sinon.spy(function () {
-            return {_id: "userId"};
-        })
-    };
-    // TEST
-    var context = {
-        params: {},
-        request: {
-            cookies: {}
-        },
-        next: sinon.spy()
-    };
-    authMiddleware.call(context);
-    test.isTrue(Accounts._hashLoginToken.calledWith(""));
     // AFTER
     Accounts._hashLoginToken = null;
     Meteor.users = null;
@@ -90,7 +66,9 @@ Tinytest.add("auth-middleware - auth - if auth succeeds adds user and userId to 
     var context = {
         params: {},
         request: {
-            cookies: {}
+            cookies: {
+                loginToken: "loginTokenFromCookies"
+            }
         },
         next: sinon.spy()
     };
@@ -118,7 +96,9 @@ Tinytest.add("auth-middleware - auth - if auth fails doesn't add user and userId
     var context = {
         params: {},
         request: {
-            cookies: {}
+            cookies: {
+                loginToken: "loginTokenFromCookies"
+            }
         },
         next: sinon.spy()
     };

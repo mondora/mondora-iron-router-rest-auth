@@ -1,7 +1,7 @@
 Package.describe({
     name: "mondora:iron-router-rest-auth",
     summary: "IronRouter plugin to (optionally) authenticate server routes",
-    version: "0.1.2",
+    version: "0.1.3",
     git: "https://github.com/mondora/mondora-iron-router-rest-auth.git"
 });
 
