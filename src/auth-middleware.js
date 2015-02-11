@@ -1,4 +1,4 @@
-authMiddlware = function (req, res, next) {
+authMiddleware = function (req, res, next) {
     // Get and hash the loginToken, which can be passed in two different ways
     var hashedLoginToken = Accounts._hashLoginToken(
         // - using a url parameter

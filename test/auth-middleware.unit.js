@@ -17,7 +17,7 @@ Tinytest.add("auth-middleware - loginToken - from params", function (test) {
         },
         next: sinon.spy()
     };
-    authMiddlware.call(context);
+    authMiddleware.call(context);
     test.isTrue(Accounts._hashLoginToken.calledWith("loginTokenFromParams"));
     // AFTER
     Accounts._hashLoginToken = null;
@@ -44,7 +44,7 @@ Tinytest.add("auth-middleware - loginToken - from cookies", function (test) {
         },
         next: sinon.spy()
     };
-    authMiddlware.call(context);
+    authMiddleware.call(context);
     test.isTrue(Accounts._hashLoginToken.calledWith("loginTokenFromCookies"));
     // AFTER
     Accounts._hashLoginToken = null;
@@ -69,7 +69,7 @@ Tinytest.add("auth-middleware - loginToken - defaults to empty string", function
         },
         next: sinon.spy()
     };
-    authMiddlware.call(context);
+    authMiddleware.call(context);
     test.isTrue(Accounts._hashLoginToken.calledWith(""));
     // AFTER
     Accounts._hashLoginToken = null;
@@ -94,7 +94,7 @@ Tinytest.add("auth-middleware - auth - if auth succeeds adds user and userId to 
         },
         next: sinon.spy()
     };
-    authMiddlware.call(context);
+    authMiddleware.call(context);
     test.equal(context.user, {
         _id: "userId"
     });
@@ -122,7 +122,7 @@ Tinytest.add("auth-middleware - auth - if auth fails doesn't add user and userId
         },
         next: sinon.spy()
     };
-    authMiddlware.call(context);
+    authMiddleware.call(context);
     test.equal(context.user, null);
     test.equal(context.userId, null);
     // AFTER
@@ -148,7 +148,7 @@ Tinytest.add("auth-middleware - middleware - continues the request", function (t
         },
         next: sinon.spy()
     };
-    authMiddlware.call(context);
+    authMiddleware.call(context);
     test.isTrue(context.next.called);
     // AFTER
     Accounts._hashLoginToken = null;
