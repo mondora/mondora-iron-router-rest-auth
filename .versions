@@ -24,12 +24,12 @@ iron:router@1.0.7
 iron:url@1.0.7
 jquery@1.11.3
 json@1.0.2
-local-test:mondora:iron-router-rest-auth@0.1.0
+local-test:mondora:iron-router-rest-auth@0.1.1
 logging@1.0.6
 meteor@1.1.4
 minifiers@1.1.3
 minimongo@1.0.6
-mondora:iron-router-rest-auth@0.1.0
+mondora:iron-router-rest-auth@0.1.1
 mongo@1.0.11
 observe-sequence@1.0.4
 ordered-dict@1.0.2
