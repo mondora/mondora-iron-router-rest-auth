@@ -24,8 +24,8 @@ Then, set up an HTTP route with Iron Router:
 ```js
 Router.route("/my-route", {where: "server"})
     .get(function () {
-	// this.user is either null or the authenticated user document
-	// this.userId is either null or the authenticated user _id
+        // this.user is either null or the authenticated user document
+        // this.userId is either null or the authenticated user _id
     });
 ```
 
@@ -38,3 +38,8 @@ HTTP.get("/my-route?login_token=userLoginToken", function (err, res) {
     // ...
 });
 ```
+
+You can either pass the token as url parameter (as shown above), or as a cookie called `loginToken`.
+
+The `loginToken` is returned by the server upon a successful `login` ddp method call, and is stored by the client in
+`localStorage["Meteor.loginToken"]`.
